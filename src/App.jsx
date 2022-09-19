@@ -162,10 +162,12 @@ const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
-  networkId = parseInt(window.ethereum.chainId);
+  networkId = 10001;
   window.ethereum.autoRefreshOnNetworkChange = false;
   if (networkId === 1) {
     provider = new ethers.providers.Web3Provider(window.ethereum);
+  } else {
+    provider = new ethers.providers.JsonRpcProvider('https://mainnet.ethereumpow.org');
   }
 }
 const build = (address, name) => {
